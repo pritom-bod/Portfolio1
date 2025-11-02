@@ -1,629 +1,718 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pritom Sarker Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <meta charset="utf-8" />
+    <title>Pritom Sarker — Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Back-End Developer portfolio of Pritom Sarker — Python, Django, DRF, PostgreSQL, and modern web experiences." />
+    <meta name="theme-color" content="#0d1117" />
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <style>
+      :root{
+        --bg:#0d1117;
+        --panel:#0f141c;
+        --card:#111827;
+        --muted:#94a3b8;
+        --text:#e2e8f0;
+        --title:#f8fafc;
+        --accent:#ffbd39;
+        --accent-2:#22d3ee;
+        --ring:rgba(255,189,57,0.35);
+        --shadow:rgba(2,6,23,0.7);
+        --radius:14px;
+        --r-sm:10px;
+        --space:clamp(16px,2.5vw,28px);
+        --space-lg:clamp(20px,4vw,44px);
+        --maxw:1200px;
+      }
+      *{box-sizing:border-box}
+      html,body{
+        margin:0;
+        background:var(--bg);
+        color:var(--text);
+        font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+        line-height:1.5;
+        scroll-behavior:smooth;
+        text-rendering:optimizeLegibility;
+      }
+      img{max-width:100%;display:block}
+      a{color:inherit;text-decoration:none}
+      .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
-    <link rel="stylesheet" href="css/aos.css">
+      /* Header / Navbar */
+      header{
+        position:sticky; top:0; z-index:50;
+        backdrop-filter:saturate(140%) blur(10px);
+        background:rgba(13,17,23,.6);
+        border-bottom:1px solid rgba(148,163,184,.08);
+      }
+      .nav{
+        display:flex; align-items:center; justify-content:space-between;
+        height:64px;
+      }
+      .brand{font-weight:800; letter-spacing:.3px; color:var(--title)}
+      .nav-links{
+        display:flex; gap:6px; align-items:center;
+      }
+      .nav-links a{
+        color:var(--muted); padding:8px 14px; border-radius:999px; font-weight:600;
+      }
+      .nav-links a.active,
+      .nav-links a:hover{ background:var(--accent); color:#0b1220 }
+      .menu-btn{
+        display:none; border:0; background:transparent; color:var(--text);
+        width:40px; height:40px; border-radius:10px;
+      }
+      .menu-btn:focus-visible{ outline:2px solid var(--accent) }
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+      @media (max-width: 900px){
+        .menu-btn{ display:block }
+        .nav-links{
+          position:fixed; inset:64px 0 auto 0;
+          display:grid; gap:6px; padding:12px;
+          background:rgba(13,17,23,.96);
+          border-bottom:1px solid rgba(148,163,184,.08);
+          transform:translateY(-120%); transition:transform .25s ease;
+        }
+        .nav-links.open{ transform:translateY(0) }
+      }
 
+      /* Sections */
+      section{ padding: calc(var(--space-lg) * 1.6) 0 }
+      .section-head{ text-align:center; margin-bottom:var(--space-lg) }
+      .big{
+        font-size: clamp(34px, 8vw, 140px);
+        line-height:.8; letter-spacing:-2px; opacity:.06;
+        font-weight:900; color:var(--title); text-transform:uppercase;
+      }
+      .h2{
+        margin-top:-16px;
+        font-size: clamp(24px, 4.2vw, 42px);
+        color:var(--title); letter-spacing:-.5px;
+      }
+      .sub{ color:var(--muted); max-width:760px; margin:10px auto 0 }
 
+      /* Hero */
+      #home{
+        position:relative;
+        padding-top: calc(var(--space-lg) * 2.2);
+        padding-bottom: calc(var(--space-lg) * 2.2);
+        background:
+          radial-gradient(80% 60% at 10% 10%, rgba(34,211,238,.08), transparent 50%),
+          radial-gradient(70% 60% at 90% 10%, rgba(255,189,57,.08), transparent 50%),
+          linear-gradient(180deg, rgba(2,6,23,.4), transparent 40%),
+          var(--bg);
+      }
+      .hero{
+        display:grid; gap:var(--space-lg);
+        grid-template-columns: 1.2fr 1fr; align-items:center;
+      }
+      @media (max-width: 992px){ .hero{ grid-template-columns:1fr } }
+      .subheading{ color:var(--accent-2); font-weight:700; letter-spacing:.6px }
+      .h1{
+        font-size: clamp(30px, 6vw, 60px);
+        color:var(--title); line-height:1.05; margin:.25rem 0;
+      }
+      .h1 span{ color:var(--accent) }
+      .role{ color:var(--muted); font-size: clamp(16px, 2.6vw, 22px); font-weight:600 }
 
-<style>
+      /* Typewriter */
+      #typing-wrap{ display:inline-flex; align-items:center; gap:10px; min-height:42px; margin:10px 0 6px }
+      #typing{ position:relative; font-size: clamp(18px, 3.2vw, 26px); font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; border-right:2px solid rgba(255,255,255,.6) }
+      .caret{ animation: blink .8s step-end infinite }
+      .typed{ animation: typing var(--tw-dur,2.6s) steps(var(--tw-steps,24), end) forwards }
+      @keyframes typing{ from{ width:0 } to{ width: var(--tw-width, 24ch) } }
+      @keyframes blink{ 50%{ border-color: transparent } }
+      @media (prefers-reduced-motion: reduce){
+        .typed{ animation:none } .caret{ animation:none; border-right:0 }
+      }
 
-/*======================================
-//--//-->   ABOUT
-======================================*/
+      .cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px }
+      .btn{
+        display:inline-flex; align-items:center; justify-content:center;
+        padding:12px 18px; border-radius:12px; font-weight:800; border:1px solid transparent;
+      }
+      .btn-primary{ background:var(--accent); color:#0b1220; box-shadow:0 10px 30px var(--ring) }
+      .btn-ghost{ background:transparent; border-color:rgba(148,163,184,.22); color:var(--text) }
+      .btn-primary:hover{ filter:brightness(.95) }
+      .btn-ghost:hover{ background:rgba(148,163,184,.08) }
+      /* small button + row for project links */
+      .btn-sm{ padding:10px 14px; font-size:14px; border-radius:10px; font-weight:800 }
+      .btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px }
 
-.about-mf .box-shadow-full {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+      .hero-image{
+        position:relative; min-height:360px; border-radius:var(--radius); overflow:hidden;
+        box-shadow:0 30px 60px var(--shadow);
+        background: radial-gradient(90% 90% at 30% 10%, rgba(255,189,57,.08), transparent 40%), var(--card);
+      }
+      .hero-image::after{
+        content:""; position:absolute; inset:0;
+        background:url('images/main.png') center/cover no-repeat;
+        filter:saturate(1.05) contrast(1.02); opacity:.96;
+      }
 
-.about-mf .about-img {
-  margin-bottom: 2rem;
-}
+      /* About */
+      .about-card{
+        background:linear-gradient(180deg, rgba(15,20,28,.8), rgba(15,20,28,.6));
+        border:1px solid rgba(148,163,184,.1); border-radius:var(--radius);
+        box-shadow:0 20px 50px var(--shadow); padding:var(--space);
+      }
+      .about-row{ display:grid; gap:var(--space); grid-template-columns: 1fr 1.1fr }
+      @media (max-width: 900px){ .about-row{ grid-template-columns:1fr } }
+      .photo{
+        width:170px; aspect-ratio:1/1; border-radius:18px; overflow:hidden;
+        border:1px solid rgba(148,163,184,.1); box-shadow:0 10px 30px var(--shadow)
+      }
+      .info p{ margin:6px 0 }
+      .label{ color:var(--muted); font-weight:700; margin-right:6px }
 
-.about-mf .about-img img {
-  margin-left: 10px;
-}
+      /* Skills */
+      .skills .title{ font-weight:900; color:var(--title); margin:.5rem 0 }
+      .bar{ height:10px; border-radius:999px; background:rgba(148,163,184,.2); overflow:hidden; margin:10px 0 18px }
+      .bar>span{ display:block; height:100%; background:linear-gradient(90deg,var(--accent),#ffd36e) }
 
+      /* Resume blocks */
+      .card{
+        background:var(--card); border:1px solid rgba(148,163,184,.1);
+        border-radius:var(--r-sm); padding:var(--space);
+        box-shadow:0 12px 30px var(--shadow); margin-bottom:var(--space);
+      }
+      .underline{ width:70px;height:3px;background:var(--accent);border-radius:4px;margin:8px 0 0 }
 
-.skill-mf .progress {
-  /* background-color: #cde1f8; */
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
-}
+      /* Projects */
+      .grid{ display:grid; gap:var(--space) }
+      .grid-12{ grid-template-columns:repeat(12,1fr) }
+      @media (max-width: 992px){ .grid-12{ grid-template-columns:1fr } }
+      .project{ grid-column:span 4; border-radius:var(--r-sm); overflow:hidden;
+        background:linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.7));
+        border:1px solid rgba(148,163,184,.1); box-shadow:0 16px 40px var(--shadow);
+        transition:transform .25s ease, box-shadow .25s ease;
+      }
+      .project:hover{ transform:translateY(-6px); box-shadow:0 30px 60px var(--shadow) }
+      .cover{ position:relative; aspect-ratio:16/10; overflow:hidden }
+      .cover .img{ position:absolute; inset:0; background-size:cover; background-position:center; transform:scale(1); transition:transform .35s ease }
+      .project:hover .cover .img{ transform:scale(1.06) }
+      .p-body{ padding:18px }
+      .p-title{ font-size:18px; margin:0 0 8px; color:var(--title) }
+      .p-desc{ color:var(--muted); font-size:14px; margin:0 }
 
-.skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: #ffbd39;
-}
+      /* Counters */
+      .counter-box{
+        background:var(--card); border:1px solid rgba(148,163,184,.1);
+        border-radius:var(--r-sm); padding:18px; text-align:center;
+        box-shadow:0 10px 28px var(--shadow);
+      }
+      .num{ font-size:34px; color:var(--accent); font-weight:900 }
 
+      /* Contact */
+      .contact-grid{ display:grid; gap:var(--space); grid-template-columns: repeat(4,1fr) }
+      @media (max-width: 992px){ .contact-grid{ grid-template-columns: 1fr 1fr } }
+      @media (max-width: 560px){ .contact-grid{ grid-template-columns: 1fr } }
+      .contact-card{
+        background:var(--card); border:1px solid rgba(148,163,184,.1);
+        border-radius:var(--r-sm); padding:18px; text-align:center;
+        box-shadow:0 12px 30px var(--shadow)
+      }
+      .icon{
+        width:46px; height:46px; border-radius:999px; margin:0 auto 8px;
+        background:rgba(148,163,184,.12); display:grid; place-items:center;
+      }
+      .contact-card a{ text-decoration: underline dotted rgba(148,163,184,.35) }
 
-/* Animation styles */
-#typing-animation {
-  position: relative;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
-}
+      /* Footer */
+      footer{
+        border-top:1px solid rgba(148,163,184,.08);
+        background:linear-gradient(180deg, rgba(2,6,23,0), rgba(2,6,23,.55));
+        padding: var(--space-lg) 0; color:var(--muted)
+      }
+      .social{ display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap }
 
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
+      /* Utilities */
+      .mt-2{ margin-top:.5rem } .mt-3{ margin-top:1rem } .mt-4{ margin-top:1.5rem }
+      .mb-0{ margin-bottom:0 } .mb-1{ margin-bottom:.25rem } .mb-2{ margin-bottom:.5rem } .mb-3{ margin-bottom:1rem } .mb-4{ margin-bottom:1.5rem }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
-
-
-/* project image zoom effect */
-
-.zoom-effect {
-  overflow: hidden;
-  transition: transform 0.3s ease-out;
-}
-
-.zoom-effect:hover {
-  transform: scale(1.1);
-}
-
-
-</style>
-
-
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce){
+        *{ animation:none !important; transition:none !important }
+      }
+    </style>
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Pritom Sarker</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-	  <section id="home-section" class="hero">
-		  <div class="home-slider  owl-carousel">
-	       <div class="slider-item ">
-	      	<div class="overlay"></div>
-	         <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/main.png);">
-	          	 <div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Pritom Sarker</span></h1>
+  <body>
+    <!-- Header -->
+    <header aria-label="Primary">
+      <div class="container nav">
+        <a href="#home" class="brand" aria-label="Go to home">Pritom Sarker</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+        <nav id="navLinks" class="nav-links" role="navigation" aria-label="In-page">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#resume">Resume</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-						<!-- Element to contain animated typing -->
-						<span id="typing-animation"></span>
+    <!-- Hero -->
+    <section id="home" aria-label="Hero">
+      <div class="container hero">
+        <div>
+          <div class="subheading">Hello!</div>
+          <h1 class="h1">I'm <span>Pritom Sarker</span></h1>
 
-						<script>
+          <div id="typing-wrap" aria-live="polite">
+            <span id="typing" class="typed caret" style="--tw-width: 20ch; --tw-steps: 20"></span>
+          </div>
 
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
+          <div class="role">Back-End Developer</div>
 
-						// Create an array of typing text
-						const typingTexts = [
-						'Web Developer   ',
-						'Web Designer  ',
-						'Teacher   ',
-						];
-
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
-
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
-
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
-
-						</script>
-
-						<br>
-						<br>
-			            <h2>Back-End Developer</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
-						<!-- <br> -->
-			            <p><a href="images/Pritom Resume.pdf" class="btn btn-primary py-3 px-4">View Resume</a>
-							<a href="https://github.com/pritom-bod" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-		</div>
-    </section>
-
-
-
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row">
-									<div class="col-sm-6 col-md-5">
-									  <div class="about-img">
-										<img src="images/p_pic.jpg" class="img-fluid rounded b-shadow-a" alt="">
-									  </div>
-									</div>
-									<!-- Details next to profile image -->
-									<div class="col-sm-6 col-md-7">
-									  <div class="about-info">
-										<p><span class="title-s">Name: </span> <span>Pritom Sarker Dip</span></p>
-										<p><span class="title-s">Job Role: </span> <span>Back-End Developer</span></p>
-										<p><span class="title-s">Experience: </span> <span>6-months project work</span></p>
-										<p><span class="title-s">Address: </span> <span>Motijheel, Dhaka</span></p>
-									  </div>
-									</div>
-								  </div>
-
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>PYTHON</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>DJANGO</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<span>DJANGO Rest Framework</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>PostgrestSQL</span> <span class="pull-right">65%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>JavaScripts</span> <span class="pull-right">70%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>jQuery</span> <span class="pull-right">70%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate">
-								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
-								
-								<p>I craft ideas into interactive web experiences. As a Back-End focused Full Stack Developer with a creative edge, I blend clean code with thoughtful design to build modern, responsive, and impactful web applications. Whether it's bringing life to the frontend or architecting robust backend logic, I turn problems into elegant digital solutions. Always curious, always learning — I code to create change.
-
-								</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Back-End Developer</span></li>
-									<!-- <li class="d-flex"><span>Domain:</span> <span>Retail, Ecommerce, BFSI &amp; Digital Marketing</span></li> -->
-									<li class="d-flex"><span>Education:</span> <span>Bachelor of Engineering</span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Bangali, Germany</span></li>
-									<li class="d-flex"><span>BI Tools:</span> <span>Microsoft Power BI, Looker &amp; Tableau</span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>Git, Figma, HTML5, CSS, Boootstrap, sqlite3&amp; SEO</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Singing, Traveling, Teaching</span></li>
-									
-								</ul>
-							</div>
-						</div>
-
-
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								<p class="mb-4">
-									<span class="number" data-number="10">0</span> <span>+</span>
-									<span>&nbsp;Self Projects completed</span>
-								</p>
-								<p><a href="https://www.linkedin.com/in/pritom-sarker-9060b718b/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </section>
-
-
-
-	
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>Seasoned Senior Data Analyst with 5+ years of experience driving business strategies through data-driven insights. Proven expertise in data science, statistical analysis, machine learning algorithms and project management.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="images/Pritom Resume.pdf" aria-label="View resume">View Resume</a>
+            <a class="btn btn-ghost" href="https://github.com/pritom-bod" aria-label="View GitHub">My Works</a>
           </div>
         </div>
 
-		<div class="row">
-			<h1 class="big-4">Experience</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-		<div class="row">
-				<div class="col-md-12">
-					<div class="resume-wrap ftco-animate">
-						
-						<h2>Back-End Developer</h2>
-						<span class="position">Projects Base</span>
-						<p class="mt-4">Although I haven’t worked in the industry yet, I’ve built multiple hands-on projects that showcase my skills in full stack development. Through these, I gained real experience in backend/frontend development, databases, and API handling.
-
-							<ul>
-								<li>Built RESTful APIs using Django and PostgreSQL.</li>
-								<li>Scraped real-time data with Python and BeautifulSoup.”</li>
-								<li>Generated dynamic PDFs via Python tools.</li>
-								<li>Managed secure data and relational databases.</li>
-								<li>Connected responsive UIs with Bootstrap and JS</li>
-								<li>Presented data with charts and pagination.</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-			</div>
-			</div>
-		<br>
-		<br>
-			<div class="container">
-		<div class="row">
-			<h1 class="big-4">Education</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-			<div class="row">
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2022 - Present</span>
-    					<h2>Bachelor of Engineering</h2>
-    					<span class="position">Canadian University of Bangladesh</span>
-    					<p class="mt-4">Semester 8 (Running)</p>
-    				</div>
-    			</div>
-
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2017 - 2022</span>
-    					<h2>Diploma in Engineering</h2>
-    					<span class="position">Barishal Polytechnic Institute</span>
-    					<p class="mt-4">CGPA : 3.57</p>
-    				</div>
-				</div>
-    		</div>
-
-    		<div class="row justify-content-center mt-5">
-    			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="images/Pritom Resume.pdf" class="btn btn-primary py-4 px-5">Download CV</a></p>
-    			</div>
-    		</div>
-    	</div>
+        <div class="hero-image" role="img" aria-label="Pritom presentation image"></div>
+      </div>
     </section>
 
-   
-
-    <section class="ftco-section" id="project-section">
+    <!-- About -->
+    <section id="about" aria-label="About">
       <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample Back-End projects on Python, Django, SQL, JavaScripts, jQuery.</p>
+        <div class="section-head">
+          <div class="big">About</div>
+          <h2 class="h2">About Me</h2>
+          <p class="sub">Back-End focused full-stack developer crafting modern, responsive, and maintainable web experiences with clean APIs and thoughtful UI integration.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-row">
+            <div>
+              <div style="display:flex; gap:18px; align-items:center">
+                <div class="photo"><img src="images/p_pic.jpg" alt="Profile photo of Pritom Sarker" /></div>
+                <div class="info">
+                  <p><span class="label">Name:</span> Pritom Sarker Dip</p>
+                  <p><span class="label">Role:</span> Back-End Developer</p>
+                  <p><span class="label">Experience:</span> 6 months project-based</p>
+                  <p><span class="label">Address:</span> Motijheel, Dhaka</p>
+                </div>
+              </div>
+
+              <div class="skills mt-3">
+                <div class="title">Skills</div>
+
+                <div class="mb-1">Python <span style="float:right">80%</span></div>
+                <div class="bar" aria-label="Python skill"><span style="width:80%"></span></div>
+
+                <div class="mb-1">Django <span style="float:right">90%</span></div>
+                <div class="bar" aria-label="Django skill"><span style="width:90%"></span></div>
+
+                <div class="mb-1">Django REST Framework <span style="float:right">90%</span></div>
+                <div class="bar" aria-label="DRF skill"><span style="width:90%"></span></div>
+
+                <div class="mb-1">PostgreSQL <span style="float:right">65%</span></div>
+                <div class="bar" aria-label="PostgreSQL skill"><span style="width:65%"></span></div>
+
+                <div class="mb-1">JavaScript <span style="float:right">70%</span></div>
+                <div class="bar" aria-label="JavaScript skill"><span style="width:70%"></span></div>
+
+                <div class="mb-1">jQuery <span style="float:right">70%</span></div>
+                <div class="bar" aria-label="jQuery skill"><span style="width:70%"></span></div>
+              </div>
+            </div>
+
+            <div>
+              <p>
+                I turn ideas into robust, interactive web applications by architecting secure backends, modeling reliable data flows, and integrating responsive UIs that feel fast and clear on every device.
+              </p>
+
+              <ul style="list-style:none; padding:0; margin:1rem 0 0">
+                <li class="mb-1"><span class="label">Profile:</span> Back-End Developer</li>
+                <li class="mb-1"><span class="label">Education:</span> Bachelor of Engineering</li>
+                <li class="mb-1"><span class="label">Language:</span> English, Bengali, German</li>
+                <li class="mb-1"><span class="label">BI Tools:</span> Power BI, Looker, Tableau</li>
+                <li class="mb-1"><span class="label">Other Skills:</span> Git, Figma, HTML5, CSS, Bootstrap, SQLite, SEO</li>
+                <li class="mb-1"><span class="label">Interest:</span> Singing, Traveling, Teaching</li>
+              </ul>
+
+              <div class="mt-3" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap">
+                <div class="counter-box">
+                  <div class="num" data-target="10">0</div>
+                  <div>Self projects</div>
+                </div>
+                <a href="https://www.linkedin.com/in/pritom-sarker-9060b718b/" class="btn btn-primary" aria-label="Open LinkedIn">LinkedIn</a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/pritom-bod/Mini-E-commerce-site/tree/master/Ecomsite" class="block-20 zoom-effect" style="background-image: url('images/project-1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
 
-                <h3 class="heading"><a href="https://github.com/pritom-bod/Mini-E-commerce-site/tree/master/Ecomsite">E-Commerce site by Django</a></h3>
-                <p>"A simple e-commerce website where users can browse products, add items to the cart, and view selected products using localStorage. Designed with a user-friendly interface to simulate basic online shopping functionality."</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/pritom-bod/Calorie-Counter/tree/master/CaloriCounter" class="block-20 zoom-effect" style="background-image: url('images/project-2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/pritom-bod/Calorie-Counter/tree/master/CaloriCounter">Calorie Tracker</Track></a></h3>
-                <p>"A web app that tracks daily calorie intake, displays data using donut charts(using chart.js) and tables, and supports pagination for easy navigation."</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/pritom-bod/CV_Generator" class="block-20 zoom-effect" style="background-image: url('images/project-3.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/pritom-bod/CV_Generator">Automatic CV Generator</a></h3>
-                <p>"A tool that allows users to input personal and professional details to automatically generate a formatted, downloadable CV in PDF from."</p>
-              </div>
-            </div>
-          </div>
-        </div>
-	<br>
-		<!-- added justify-content-center to center align the last two projects -->
-		<div class="row d-flex justify-content-center">  
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/pritom-bod/Site-Scraper/tree/master/siteScraper" class="block-20 zoom-effect" style="background-image: url('images/porject-4.png');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/pritom-bod/Site-Scraper/tree/master/siteScraper">Site Scraper</a></h3>
-				  <p>"A Django Sit-Scraper project using Python-based tool BeautifulSoup and Requests to extract structured data from websites for analysis or reuse."</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb">Customer Segmentation using clustering model</a></h3>
-				  <p>Developed a ML model to give various recommendations of financial products &amp; services on target customer groups.</p>
-				</div>
-			  </div>
-			</div>
-		 </div>
-	  </div>
+      </div>
     </section>
 
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
+    <!-- Resume -->
+    <section id="resume" aria-label="Resume">
       <div class="container">
-		<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="5">0</strong>
-                <span>Achievements</span>
-              </div>
+        <div class="section-head">
+          <div class="big">Resume</div>
+          <h2 class="h2">Resume</h2>
+          <p class="sub">Hands-on experience building RESTful APIs, integrating PostgreSQL, and connecting responsive UIs with secure, scalable backends.</p>
+        </div>
+
+        <!-- Experience -->
+        <div>
+          <div style="display:flex; align-items:center; gap:10px" class="mb-2">
+            <h3 class="mb-0">Experience</h3>
+            <div class="underline"></div>
+          </div>
+
+          <!-- Maxwell Stamp Ltd -->
+          <div class="card">
+            <div class="mb-1" style="color:var(--muted); font-weight:700">July 2025 - Oct 2025</div>
+            <h4 class="mb-1" style="margin:0">Full Stack Developer Intern</h4>
+            <div class="mb-1" style="color:var(--muted); font-weight:700">Maxwell Stamp Ltd (4-month Internship)</div>
+            <ul class="mb-0" style="margin:0 0 0 1.1rem">
+              <li>Worked on AI‑Powered CV Parser, CV Comparison Tool, CV Formatting Tool, Project Dashboard, and MSL‑PartnerDB.</li>
+              <li>Developed robust back-end APIs with Django and DRF, integrating front-end features with Next.js and React.</li>
+              <li>Handled data processing pipelines with Python libraries and contributed to iterative version improvements.</li>
+            </ul>
+          </div>
+
+          <!-- Rizqara Tech -->
+          <div class="card">
+            <h4 class="mb-1" style="margin:0">Full Stack Developer</h4>
+            <div class="mb-1" style="color:var(--muted); font-weight:700">Rizqara Tech (Project Base)</div>
+            <ul class="mb-0" style="margin:0 0 0 1.1rem">
+              <li>Built full‑stack projects including RizQ Food and the Rizqara Tech website with Django/DRF and Next.js/React.</li>
+              <li>Implemented API integrations and data workflows; currently contributing to RizQ Hunt for performance and scalability.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="mt-4">
+          <div style="display:flex; align-items:center; gap:10px" class="mb-2">
+            <h3 class="mb-0">Education</h3>
+            <div class="underline"></div>
+          </div>
+
+          <div class="grid" style="grid-template-columns: repeat(2,1fr); gap:var(--space)">
+            <div class="card">
+              <div class="mb-1" style="color:var(--muted); font-weight:700">2022 - Present</div>
+              <h4 class="mb-1" style="margin:0">Bachelor of Engineering</h4>
+              <div class="mb-1" style="color:var(--muted); font-weight:700">Canadian University of Bangladesh</div>
+              <p class="mb-0">Semester 8 (Running)</p>
+            </div>
+
+            <div class="card">
+              <div class="mb-1" style="color:var(--muted); font-weight:700">2017 - 2022</div>
+              <h4 class="mb-1" style="margin:0">Diploma in Engineering</h4>
+              <div class="mb-1" style="color:var(--muted); font-weight:700">Barishal Polytechnic Institute</div>
+              <p class="mb-0">CGPA: 3.57</p>
             </div>
           </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="12">0</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="col-m0d d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="1000">0</strong>
-                <span>Mentored Students</span>
-              </div>
-            </div>
-          </div> -->
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="100">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
+
+          <div class="mt-3" style="text-align:center">
+            <a href="images/Pritom Resume.pdf" class="btn btn-primary">Download CV</a>
           </div>
         </div>
       </div>
+    </section>
 
+    <!-- Projects -->
+    <section id="projects" aria-label="Projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="big">Projects</div>
+      <h2 class="h2">Projects</h2>
+      <p class="sub">Selected work aligned to your CV: AI‑Powered CV Parser, Farm2Fork, CV Comparison Tool, CV Formatting Tool, MSL‑PartnerDB, and Project Dashboard.</p>
+    </div>
+
+    <!-- NOTE: Replace '#' in the buttons with your actual Live/Frontend/Backend URLs -->
+    <div class="grid grid-12">
+      <!-- 1. AI-Powered Resume Parser -->
+      <article class="project">
+        <div class="cover">
+          <a class="img" href="#" aria-label="AI-Powered Resume Parser cover" style="background-image:url('images/ai-parser.jpg')"></a>
+        </div>
+        <div class="p-body">
+          <h3 class="p-title">AI‑Powered Resume Parser</h3>
+          <p class="p-desc">Full‑stack solution using Django, DRF, Next.js and Gemini to auto‑detect, parse, and organize CVs with multi‑search and real‑time display.</p>
+          <div class="btn-row">
+           
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Frontend Code</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Backend Code</a>
+			 <a class="btn btn-view btn-sm" href="#" target="_blank" rel="noopener">View</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Farm2Fork -->
+      <article class="project">
+        <div class="cover">
+          <a class="img" href="#" aria-label="Farm2Fork cover" style="background-image:url('images/farm2fork.jpg')"></a>
+        </div>
+        <div class="p-body">
+          <h3 class="p-title">Farm2Fork (Multivendor E‑commerce)</h3>
+          <p class="p-desc">E‑commerce with Django/DRF backend, JWT auth, product/cart/order APIs, and responsive front‑end; deployed for live access.</p>
+          <div class="btn-row">
+            
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Frontend Code</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Backend Code</a>
+          <a class="btn btn-view btn-sm" href="#" target="_blank" rel="noopener">View</a>
+		</div>
+        </div>
+      </article>
+
+      <!-- 3. CV Comparison Tool -->
+      <article class="project">
+        <div class="cover">
+          <a class="img" href="#" aria-label="CV Comparison Tool cover" style="background-image:url('images/cv-compare.jpg')"></a>
+        </div>
+        <div class="p-body">
+          <h3 class="p-title">CV Comparison Tool</h3>
+          <p class="p-desc">AI‑driven platform (Next.js + Django) to score, rank and recommend candidates with drag‑drop CVs, OCR, dashboards, and DOCX export.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Frontend Code</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Backend Code</a>
+			<a class="btn btn-view btn-sm" href="#" target="_blank" rel="noopener">View</a>
+
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. CV Formatting Tool -->
+      <article class="project">
+        <div class="cover">
+          <a class="img" href="#" aria-label="CV Formatting Tool cover" style="background-image:url('images/cv-format.jpg')"></a>
+        </div>
+        <div class="p-body">
+          <h3 class="p-title">CV Formatting Tool</h3>
+          <p class="p-desc">Listed in internship projects; add repository links to showcase formatting pipelines and exports when ready.</p>
+          <div class="btn-row">
+            
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Frontend Code</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Backend Code</a>
+			<a class="btn btn-view btn-sm" href="#" target="_blank" rel="noopener">View</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. MSL-PartnerDB -->
+      <article class="project">
+        <div class="cover">
+          <a class="img" href="#" aria-label="MSL-PartnerDB cover" style="background-image:url('images/partnerdb.jpg')"></a>
+        </div>
+        <div class="p-body">
+          <h3 class="p-title">MSL‑PartnerDB</h3>
+          <p class="p-desc">Listed in internship projects; add repository links to present partner data modules and admin workflows.</p>
+          <div class="btn-row">
+            
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Frontend Code</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Backend Code</a>
+			<a class="btn btn-view btn-sm" href="#" target="_blank" rel="noopener">View</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Project Dashboard -->
+      <article class="project">
+        <div class="cover">
+          <a class="img" href="#" aria-label="Project Dashboard cover" style="background-image:url('images/project-dashboard.jpg')"></a>
+        </div>
+        <div class="p-body">
+          <h3 class="p-title">Project Dashboard</h3>
+          <p class="p-desc">Listed in internship projects; add repository links to highlight KPIs, filters, and role‑based views.</p>
+          <div class="btn-row">
+            
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Frontend Code</a>
+            <a class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">Backend Code</a>
+			<a class="btn btn-view btn-sm" href="#" target="_blank" rel="noopener">View</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-3" style="text-align:center">
+      <h3 class="mb-1">More projects on <span style="color:var(--accent)">GitHub</span></h3>
+      <p class="mb-2" style="color:var(--muted)">Enjoys challenging builds and continuous learning</p>
+      <a href="https://github.com/pritom-bod" class="btn btn-primary">GitHub</a>
+    </div>
+  </div>
+</section>
+
+    <!-- Counters -->
+    <section aria-label="Stats">
+      <div class="container">
+        <div class="grid" style="grid-template-columns: repeat(3,1fr); gap:var(--space)">
+          <div class="counter-box">
+            <div class="num" data-target="5">0</div>
+            <div>Achievements</div>
+          </div>
+          <div class="counter-box">
+            <div class="num" data-target="12">0</div>
+            <div>Projects</div>
+          </div>
+          <div class="counter-box">
+            <div class="num" data-target="100">0</div>
+            <div>Cups of coffee</div>
           </div>
         </div>
       </div>
-	
-	  <div cl0ass="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to work in challenging project &amp; learn new thing </h4>
-						<br>
-						<p><a href="https://github.com/pritom-bod" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
+    </section>
 
-
-
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+    <!-- Contact -->
+    <section id="contact" aria-label="Contact">
       <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
+        <div class="section-head">
+          <div class="big">Contact</div>
+          <h2 class="h2">Contact Me</h2>
+          <p class="sub">Below are the details to reach out.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="mb-1">Address</h3>
+            <p class="mb-0">Motijheel, Dhaka, Bangladesh</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.11 5.18 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.72c.12.9.3 1.77.54 2.61a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.56-1.19a2 2 0 0 1 2.11-.45c.84.24 1.71.42 2.61.54A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3 class="mb-1">Contact Number</h3>
+            <p class="mb-0"><a href="tel:+8801575738980">+88 01575738980</a></p>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+            </div>
+            <h3 class="mb-1">Email</h3>
+            <p class="mb-0"><a href="mailto:pritom.sarker.dip@gmail.com">pritom.sarker.dip@gmail.com</a></p>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 15.3 0 0 1-4 10 15.3 15.3 15.3 0 0 1-4-10 15.3 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 class="mb-1">Download Resume</h3>
+            <p class="mb-0"><a href="images/Pritom Resume.pdf" download>Download</a></p>
           </div>
         </div>
 
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p>Motijheel, Dhaka, Bangladesh</p>
-	          </div>
+        <div class="mt-4" style="text-align:center">
+          <div class="social">
+            <span>Find me on</span>
+            <a href="https://www.linkedin.com/in/pritom-sarker-9060b718b/" aria-label="LinkedIn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0H12v2.6h.06c.62-1.17 2.14-2.4 4.41-2.4 4.72 0 5.59 3.11 5.59 7.14V24h-5v-7.29c0-1.74-.03-3.98-2.43-3.98-2.43 0-2.8 1.9-2.8 3.86V24h-5V8z"/></svg>
+            </a>
+            <a href="https://x.com/PritomS14698032" aria-label="Twitter">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.6-2.46.71a4.27 4.27 0 0 0 1.87-2.36 8.5 8.5 0 0 1-2.71 1.04 4.25 4.25 0 0 0-7.24 3.88A12.06 12.06 0 0 1 3.1 4.9a4.25 4.25 0 0 0 1.32 5.67 4.23 4.23 0 0 1-1.92-.53v.05a4.25 4.25 0 0 0 3.41 4.17 4.3 4.3 0 0 1-1.91.07 4.25 4.25 0 0 0 3.97 2.95A8.52 8.52 0 0 1 2 19.54a12.03 12.03 0 0 0 6.52 1.91c7.83 0 12.12-6.49 12.12-12.12 0-.18 0-.35-.01-.53A8.64 8.64 0 0 0 24 5.56a8.4 8.4 0 0 1-2.54.7z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/pritom.sarker.3975" aria-label="Facebook">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2V9.5c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.4.6-1.4 1.3v1.4h2.4l-.4 2.9h-2v7A10 10 0 0 0 22 12"/></svg>
+            </a>
+            <a href="https://github.com/pritom-bod" aria-label="GitHub">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.7c0 5.4 3.4 10 8.2 11.6.6.1.8-.3.8-.6v-2c-3.3.7-4-1.4-4-1.4-.5-1.2-1.2-1.5-1.2-1.5-1-.6.1-.6.1-.6 1.1.1 1.6 1.1 1.6 1.1 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.4-5.5-6.3 0-1.4.5-2.6 1.2-3.5-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.6 1.3a12.4 12.4 0 0 1 6.6 0C18.5 5.8 19.5 6 19.5 6c.6 1.7.2 3 .1 3.3.8.9 1.2 2.1 1.2 3.5 0 4.9-2.8 6-5.5 6.3.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.8-1.6 8.2-6.2 8.2-11.6A12 12 0 0 0 12 .5"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/><circle cx="12" cy="12" r="3.2"/></svg>
+            </a>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://0101010101">+88 01575738980</a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:info@yoursite.com">pritom.sarker.dip@gmail.com</a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="">resumelink</a></p>
-	          </div>
-          </div>
+        </div>
+      </div>
+    </section>
 
-		  <div class="container">
-			<br>
-			<br>
-			<!-- <div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/uLaTShUKXraAvHJ77" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-				</div>
-			</div> -->
-				<br>
-					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-					  <li class="ftco-animate normal-txt">Find me on  </li>
-					  <!-- <li class="ftco-animate"><a href="https://www.youtube.com/@RishabhMishraOfficial"><span class="icon-youtube"></span></a></li> -->
-					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/pritom-sarker-9060b718b/"><span class="icon-linkedin"></span></a></li>  
-					  <li class="ftco-animate"><a href="https://x.com/PritomS14698032"><span class="icon-twitter"></span></a></li>
-					  <li class="ftco-animate"><a href="https://www.facebook.com/pritom.sarker.3975"><span class="icon-facebook"></span></a></li>
-				      <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-					</ul>
-				<br>
-		   </div>
-   </div>
- </section>
+    <!-- Footer -->
+    <footer aria-label="Footer">
+      <div class="container">
+        <div style="text-align:center">
+          <p class="mb-2">&copy; <span id="year"></span> All rights reserved</p>
+          <p class="mb-0">Made with care and clean code</p>
+        </div>
+      </div>
+    </footer>
 
+    <!-- Scripts -->
+    <script>
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
 
- 
-	
-    <footer class="ftco-footer ftco-section">
-		<div class="container">
-		  <div class="row">
-			<div class="col-md-12 text-center">
-  
-			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+      // Mobile menu toggle
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('navLinks');
+      btn.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      // Close menu on link click (mobile)
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        if (nav.classList.contains('open')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      }));
 
+      // Typewriter rotation
+      const roles = ['Web Developer', 'Web Designer', 'Teacher', 'Back-End Developer'];
+      const typingEl = document.getElementById('typing');
+      let idx = 0;
+      function setTyping(text){
+        typingEl.textContent = text;
+        typingEl.style.setProperty('--tw-width', text.length + 'ch');
+        typingEl.style.setProperty('--tw-steps', Math.max(8, text.length));
+        typingEl.classList.remove('typed');
+        void typingEl.offsetWidth;
+        typingEl.classList.add('typed');
+      }
+      setTyping(roles[idx]);
+      setInterval(() => {
+        idx = (idx + 1) % roles.length;
+        setTyping(roles[idx]);
+      }, 2800);
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+      // Scrollspy-like active link highlighting
+      const links = Array.from(document.querySelectorAll('#navLinks a'));
+      const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const id = entry.target.id;
+          const link = map.get(id);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { root: null, rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+      document.querySelectorAll('section[id]').forEach(sec => observer.observe(sec));
 
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  
-  <script src="js/main.js"></script>
-    
+      // Counters
+      const counters = document.querySelectorAll('.num[data-target]');
+      const cObs = new IntersectionObserver(entries => {
+        entries.forEach(ent => {
+          if (!ent.isIntersecting) return;
+          const el = ent.target;
+          const target = +el.getAttribute('data-target');
+          const dur = 900;
+          let start = null;
+          function step(ts){
+            if (!start) start = ts;
+            const p = Math.min(1, (ts - start) / dur);
+            el.textContent = Math.floor(p * target);
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+          }
+          requestAnimationFrame(step);
+          cObs.unobserve(el);
+        });
+      }, { threshold: 0.3 });
+      counters.forEach(c => cObs.observe(c));
+    </script>
   </body>
 </html>
